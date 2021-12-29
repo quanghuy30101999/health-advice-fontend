@@ -1,0 +1,91 @@
+.login-background {
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
+  .login-container {
+    width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 500px;
+    .login-content {
+      padding: 15px;
+      .headerTitle {
+        font-size: 2rem;
+        padding: 2rem 0;
+        margin: 0;
+        text-align: center;
+        font-family: "open sans", sans-serif;
+      }
+      .form-group.login-input {
+        padding: 10px;
+        .custom-input-password {
+          position: relative;
+
+          i {
+            position: absolute;
+            right: 5px;
+            top: 10px;
+            cursor: pointer;
+          }
+        }
+      }
+      .btn-login {
+        width: 100%;
+        margin: 10px 0;
+        height: 40px;
+        border-radius: 15px;
+        background: linear-gradient(
+          135deg,
+          rgba(34, 193, 195, 1) 0%,
+          rgba(253, 187, 45, 1) 100%
+        );
+      }
+      .forgot-password {
+        font-size: 12px;
+      }
+      .social-login {
+        i {
+          padding: 1rem 1rem;
+          font-size: 50px;
+        }
+
+        .google {
+          color: #ff0000;
+          background-image: linear-gradient(
+            to bottom,
+            transparent 20%,
+            white 20%,
+            white 93%,
+            transparent 93%
+          );
+          background-size: 55%;
+          background-position: 70% 0;
+          background-repeat: no-repeat;
+        }
+        .facebook {
+          color: #3b5998;
+          background-image: linear-gradient(
+            to bottom,
+            transparent 20%,
+            white 20%,
+            white 93%,
+            transparent 93%
+          );
+          background-size: 55%;
+          background-position: 70% 0;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+  }
+}
