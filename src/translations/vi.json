@@ -21,6 +21,14 @@
         "medicalProducts": "Sản phẩm y tế"
     },
     "common": {
+        "manageUsers": "Quản lí người dùng",
+        "addNewUser": "Thêm người dùng mới",
+        "email": "Email",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "address": "Địa chỉ",
+        "action": "Hành động",
+        "logout": "Đăng xuất",
         "add": "Thêm",
         "edit": "Sửa",
         "delete": "Xóa",

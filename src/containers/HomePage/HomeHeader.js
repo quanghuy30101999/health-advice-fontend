@@ -90,7 +90,11 @@ class HomeHeader extends Component {
             </div>
             <div className="search">
               <i className="fas fa-search"></i>
-              <input type="text" placeholder="Tìm chuyên khoa khám bệnh" />
+              <FormattedMessage id="homeHeader.findMedicalSpecialist">
+                {(placeholder) => (
+                  <input type="text" placeholder={placeholder} />
+                )}
+              </FormattedMessage>
             </div>
           </div>
           <div className="content-down">
@@ -169,7 +173,7 @@ class HomeHeader extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    lang: state.app.language,
+    // lang: state.app.language,
     isLoggedIn: state.user.isLoggedIn,
   };
 };

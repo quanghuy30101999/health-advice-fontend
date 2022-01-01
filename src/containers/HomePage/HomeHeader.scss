@@ -52,13 +52,13 @@
 
       .language-vn {
         cursor: pointer;
-        &:active {
+        &.active {
           color: orange;
         }
       }
 
       .language-en {
-        &:active {
+        &.active {
           color: orange;
         }
         cursor: pointer;

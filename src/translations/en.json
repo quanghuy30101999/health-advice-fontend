@@ -21,6 +21,14 @@
         "medicalProducts": "medical products"
     },
     "common": {
+        "manageUsers": "Manage users",
+        "addNewUser": "Add new user",
+        "email": "Email",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "address": "Address",
+        "action": "Action",
+        "logout": "Logout",
         "add": "Add",
         "edit": "Edit",
         "delete": "Delete",

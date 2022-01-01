@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { getAllUsers } from "../../services/userService";
 import "./UserManage.scss";
 import ModalUser from "./ModalUser";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import * as actions from "../../store/actions";
+import { FormattedMessage } from "react-intl";
 
 class UserManage extends Component {
   constructor(props) {
@@ -64,24 +65,37 @@ class UserManage extends Component {
           className="modal-body"
           createNewUser={this.createNewUser}
         />
-        <div className="title text-center">Manage users</div>
+        <div className="title text-center">
+          <FormattedMessage id="common.manageUsers" />
+        </div>
         <div className="mx-1">
           <button
             className="btn btn-primary px-3"
             onClick={this.handleClickAddUser}
           >
-            <i className="fas fa-plus"></i> Add new user
+            <i className="fas fa-plus"></i>{" "}
+            <FormattedMessage id="common.addNewUser" />
           </button>
         </div>
         <div className="users-table mt-3 mx-1">
           <table id="customers">
             <thead>
               <tr>
-                <th>Email</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Address</th>
-                <th>Action</th>
+                <th>
+                  <FormattedMessage id="common.email" />
+                </th>
+                <th>
+                  <FormattedMessage id="common.firstName" />
+                </th>
+                <th>
+                  <FormattedMessage id="common.lastName" />
+                </th>
+                <th>
+                  <FormattedMessage id="common.address" />
+                </th>
+                <th>
+                  <FormattedMessage id="common.action" />
+                </th>
               </tr>
             </thead>
             {users.map((value, index) => {
