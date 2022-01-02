@@ -11,7 +11,7 @@ class Header extends Component {
     this.props.setLanguage(language);
   };
   render() {
-    const { processLogout } = this.props;
+    const { processLogout, userInfo } = this.props;
 
     return (
       <div className="header-container">
@@ -20,6 +20,10 @@ class Header extends Component {
           <Navigator menus={adminMenu} />
         </div>
         <div className="languages">
+          <div className="welcome">
+            <FormattedMessage id="homeHeader.welcome" />,{" "}
+            {userInfo && userInfo.lastName ? userInfo.lastName : ""}!
+          </div>
           <span
             className="language-vi"
             onClick={() => this.chageLanguage("vi")}
@@ -55,6 +59,7 @@ class Header extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    userInfo: state.user.userInfo,
   };
 };
 

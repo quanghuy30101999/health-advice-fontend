@@ -1,5 +1,6 @@
 {
     "homeHeader" : {
+        "welcome": "Xin chào",
         "specialty": "Chuyên khoa",
         "searchDoctor": "Tìm bác sĩ theo chuyên khoa",
         "healthFacilities": "Cơ sở y tế",
@@ -60,8 +61,7 @@
             "system-administrator": {
                 "header": "Quản trị hệ thống",
                 "user-manage": "Quản lý người sử dụng",
-                "product-manage": "Quản lý gói",
-                "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
+                "user-manage-redux": "Quản lý gói"
             },
             "system-parameter": {
                 "header": "Tham số hệ thống"

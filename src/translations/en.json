@@ -1,5 +1,6 @@
 {
     "homeHeader" : {
+        "welcome": "Welcome",
         "specialty": "specialty",
         "searchDoctor": "Find a doctor by specialty",
         "healthFacilities": "Health facilities",
@@ -60,8 +61,7 @@
             "system-administrator": {
                 "header": "System Administrator",
                 "user-manage": "User manage",
-                "product-manage": "Package manage",
-                "register-package-group-or-account": "Register service package for group/account"
+                "user-manage-redux": "Package manage"
             },
             "system-parameter": {
                 "header": "System-parameter"
