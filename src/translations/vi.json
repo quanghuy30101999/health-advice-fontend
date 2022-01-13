@@ -1,4 +1,7 @@
 {
+    "register": {
+        "register": "Đăng kí"
+    },
     "homeHeader" : {
         "welcome": "Xin chào",
         "specialty": "Chuyên khoa",
@@ -22,6 +25,9 @@
         "medicalProducts": "Sản phẩm y tế"
     },
     "common": {
+        "outstandingDoctorOfTheWeek": "Bác sĩ nổi bật tuần qua",
+        "seeMore": "Xem thêm",
+        "popularSpecialties": "Chuyên khoa phổ biến",
         "manageUsers": "Quản lí người dùng",
         "addNewUser": "Thêm người dùng mới",
         "email": "Email",

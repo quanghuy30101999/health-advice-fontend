@@ -12,16 +12,16 @@ class HomePage extends Component {
   render() {
     let settings = {
       dots: true,
-      infinite: true,
+      infinite: false,
       speed: 500,
       slidesToShow: 4,
-      slidesToScroll: 4,
+      slidesToScroll: 1,
     };
     return (
       <div>
         <HomeHeader />
         <Specialty settings={settings} />
-        <MedicalFacility settings={settings} />
+        {/* <MedicalFacility settings={settings} /> */}
         <OutstandingDoctor settings={settings} />
       </div>
     );

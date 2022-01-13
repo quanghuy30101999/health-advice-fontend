@@ -1,4 +1,7 @@
 {
+    "register": {
+        "register": "Register"
+    },
     "homeHeader" : {
         "welcome": "Welcome",
         "specialty": "specialty",
@@ -22,6 +25,9 @@
         "medicalProducts": "medical products"
     },
     "common": {
+        "outstandingDoctorOfTheWeek": "Outstanding Doctor of the Week",
+        "seeMore": "See more",
+        "popularSpecialties": "Popular specialties",
         "manageUsers": "Manage users",
         "addNewUser": "Add new user",
         "email": "Email",

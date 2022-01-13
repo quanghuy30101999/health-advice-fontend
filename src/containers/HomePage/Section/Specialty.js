@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import "./Specialty.scss";
 import Slider from "react-slick";
 import coXuongKhopImg from "../../../assets/specialty/120331-co-xuong-khop.jpg";
+import { FormattedMessage } from "react-intl";
+
 class Specialty extends Component {
   render() {
     return (
@@ -10,8 +12,12 @@ class Specialty extends Component {
         <div className="section-share section-specialty gray">
           <div className="section-container">
             <div className="section-header">
-              <span className="title-section">Chuyên khoa phổ biến</span>
-              <button className="btn-section">Xem thêm</button>
+              <span className="title-section">
+                <FormattedMessage id="common.popularSpecialties" />
+              </span>
+              <button className="btn-section">
+                <FormattedMessage id="common.seeMore" />
+              </button>
             </div>
             <div className="specialty-body"></div>
             <Slider {...this.props.settings}>

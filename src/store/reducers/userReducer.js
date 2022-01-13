@@ -3,6 +3,7 @@ import actionTypes from "../actions/actionTypes";
 const initialState = {
   isLoggedIn: false,
   userInfo: null,
+  topDoctors: [],
 };
 
 const appReducer = (state = initialState, action) => {
@@ -24,6 +25,16 @@ const appReducer = (state = initialState, action) => {
         ...state,
         isLoggedIn: false,
         userInfo: null,
+      };
+    case actionTypes.FETCH_TOP_DOCTOR_SUCCESS:
+      state.topDoctors = action.data;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_TOP_DOCTOR_FAILDED:
+      state.topDoctors = [];
+      return {
+        ...state,
       };
     case actionTypes.PROCESS_LOGOUT:
       return {

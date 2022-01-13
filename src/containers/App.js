@@ -12,11 +12,12 @@ import { path } from "../utils";
 import Login from "../containers/Auth/Login";
 import Home from "../routes/Home";
 import Header from "./Header/Header";
+import Register from "../containers/Register/Register";
 import System from "../routes/System";
 import HomePage from "../containers/HomePage/HomePage";
 import { CustomToastCloseButton } from "../components/CustomToast";
 import CustomScrollbars from "../components/CustomScrollbars";
-
+import Setup from "../containers/Register/Setup";
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -49,10 +50,12 @@ class App extends Component {
                     path={path.LOGIN}
                     component={userIsNotAuthenticated(Login)}
                   />
+                  <Route path={path.REGISTER} component={Register} />
                   <Route
                     path={path.SYSTEM}
                     component={userIsAuthenticated(System)}
                   />
+                  <Route path={path.SET_UP} component={Setup} />
                   <Route path={path.HOMEPAGE} component={HomePage} />
                 </Switch>
               </CustomScrollbars>

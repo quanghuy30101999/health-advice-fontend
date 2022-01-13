@@ -72,7 +72,7 @@ class HomeHeader extends Component {
                 VN
               </div>
               <div
-                className={`language-en ${lang === "en" ? "ac tive" : ""}`}
+                className={`language-en ${lang === "en" ? "active" : ""}`}
                 onClick={() => this.selectLanguage("en")}
               >
                 EN
@@ -173,7 +173,7 @@ class HomeHeader extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // lang: state.app.language,
+    lang: state.app.language,
     isLoggedIn: state.user.isLoggedIn,
   };
 };

@@ -1,0 +1,22 @@
+.setup-doctor {
+  padding: 10px;
+  .title {
+    margin: 15px 0px;
+  }
+  .more-infor {
+    width: 50%;
+    padding-bottom: 20px;
+  }
+  .save {
+    margin-top: 20px !important;
+    border: none;
+    background: orange;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}

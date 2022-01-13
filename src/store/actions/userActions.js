@@ -1,3 +1,4 @@
+import { getTopDoctor } from "../../services/userService";
 import actionTypes from "./actionTypes";
 
 export const addUserSuccess = (userInfo) => ({
@@ -17,3 +18,29 @@ export const userLoginFail = () => ({
 export const processLogout = () => ({
   type: actionTypes.PROCESS_LOGOUT,
 });
+
+export const userRegisterSuccess = () => ({
+  type: actionTypes.USER_REGISTER_SUCCESS,
+});
+
+export const fetchTopDoctor = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getTopDoctor();
+      if (res && res.status == 200) {
+        dispatch({
+          type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
+          data: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_TOP_DOCTOR_FAILDED,
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: actionTypes.FETCH_TOP_DOCTOR_FAILDED,
+      });
+    }
+  };
+};
