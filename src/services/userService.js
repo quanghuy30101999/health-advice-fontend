@@ -4,6 +4,12 @@ export const getAllUsers = () => {
   return axios.get(process.env.REACT_APP_BACKEND_URL + "/users");
 };
 
+export const getAllcode = (type) => {
+  return axios.get(
+    process.env.REACT_APP_BACKEND_URL + `/allcode?types=${type}`
+  );
+};
+
 export const getTopDoctor = () => {
   return axios.get(process.env.REACT_APP_BACKEND_URL + "/doctors");
 };

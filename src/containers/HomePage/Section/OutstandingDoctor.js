@@ -44,8 +44,8 @@ class OutstandingDoctor extends Component {
               {doctors &&
                 doctors.length > 0 &&
                 doctors.map((value, index) => {
-                  let nameEn = `${value.positionData.valueEn}, ${value.firstName} ${value.lastName}`;
-                  let nameVi = `${value.positionData.valueVi} ${value.firstName} ${value.lastName}`;
+                  let nameEn = `${value.position.value_en}, ${value.first_name} ${value.last_name}`;
+                  let nameVi = `${value.position.value_vi} ${value.first_name} ${value.last_name}`;
                   return (
                     <div className="image-customize" key={index}>
                       <img src={coXuongKhopImg} />

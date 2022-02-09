@@ -1,19 +1,12 @@
 export const adminMenu = [
   {
-    name: "menu.system.header",
+    name: "menu.admin.user",
     menus: [
       {
-        name: "menu.system.system-administrator.header",
-        subMenus: [
-          {
-            name: "menu.system.system-administrator.user-manage",
-            link: "/system/user-manage",
-          },
-          {
-            name: "menu.system.system-administrator.user-manage-redux",
-            link: "/system/user-manage-redux",
-          },
-        ],
+        name: "menu.admin.manage-doctor", link: "/system/doctor-manage",
+      },
+      {
+        name: "menu.admin.manage-user", link: "/system/user-manage",
       },
     ],
   },

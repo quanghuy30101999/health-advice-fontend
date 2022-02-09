@@ -35,7 +35,7 @@ class Login extends Component {
       let { username, password } = this.state;
       await handleLogin(username, password).then(
         (response) => {
-          if (response.status === 200) {
+          if (response.status === 201) {
             if (response.data.status === 400) {
               this.setState({
                 errMessage: response.data.message,
