@@ -2,22 +2,47 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import Navigator from "../../components/Navigator";
-import { adminMenu } from "./menuApp";
+import { adminMenu, doctorMenu } from "./menuApp";
 import { FormattedMessage } from "react-intl";
 import "./Header.scss";
+import _ from "lodash";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuApp: [],
+    };
+  }
+
   chageLanguage = (language) => {
     this.props.setLanguage(language);
   };
+
+  componentDidMount() {
+    let { userInfo } = this.props;
+    let menu = [];
+    if (userInfo) {
+      if (userInfo.role && userInfo.role.key === "R1") {
+        menu = adminMenu;
+      }
+      if (userInfo.role && userInfo.role.key === "R2") {
+        menu = doctorMenu;
+      }
+    }
+    this.setState({
+      menuApp: menu,
+    });
+  }
   render() {
     const { processLogout, userInfo } = this.props;
 
+    console.log(this.state.menuApp);
+
     return (
       <div className="header-container">
-        {/* thanh navigator */}
         <div className="header-tabs-container">
-          <Navigator menus={adminMenu} />
+          <Navigator menus={this.state.menuApp} />
         </div>
         <div className="languages">
           <div className="welcome">
@@ -49,8 +74,6 @@ class Header extends Component {
             )}
           </FormattedMessage>
         </div>
-
-        {/* nút logout */}
       </div>
     );
   }

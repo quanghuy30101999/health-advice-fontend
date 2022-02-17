@@ -76,7 +76,12 @@
         "admin": {
             "user": "Người dùng",
             "manage-user": "Quản lí người dùng",
-            "manage-doctor": "Quản lí bác sĩ"
+            "manage-doctor": "Quản lí bác sĩ",
+            "additional-doctor-information": "Bổ sung thông tin bác sĩ"
+        },
+        "doctor": {
+            "manage-schedule": "Quản lí kế hoạch khám bệnh",
+            "schedule": "Lịch khám bệnh"
         }
     },
     "system": {

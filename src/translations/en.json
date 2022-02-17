@@ -76,7 +76,12 @@
         "admin": {
             "user": "User",
             "manage-user": "Manage user",
-            "manage-doctor": "Manage doctor"
+            "manage-doctor": "Manage doctor",
+            "additional-doctor-information": "Additional information"
+        },
+        "doctor": {
+            "manage-schedule": "Manage schedule",
+            "schedule": "Schedule"
         }
     },
     "system": {

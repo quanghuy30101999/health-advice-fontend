@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import coXuongKhopImg from "../../../assets/specialty/120331-co-xuong-khop.jpg";
 import * as actions from "../../../store/actions/";
 import { FormattedMessage } from "react-intl";
+import "./OutstandingDoctor.scss";
+import { withRouter } from "react-router";
 
 class OutstandingDoctor extends Component {
   constructor(props) {
@@ -24,10 +26,13 @@ class OutstandingDoctor extends Component {
   async componentDidMount() {
     await this.props.loadTopDoctors();
   }
+
+  handleViewDetailDoctor = (doctor) => {
+    this.props.history.push(`/user/${doctor.id}`);
+  };
   render() {
     let { doctors } = this.state;
     let { lang } = this.props;
-    doctors = doctors.concat(doctors);
 
     return (
       <>
@@ -47,9 +52,27 @@ class OutstandingDoctor extends Component {
                   let nameEn = `${value.position.value_en}, ${value.first_name} ${value.last_name}`;
                   let nameVi = `${value.position.value_vi} ${value.first_name} ${value.last_name}`;
                   return (
-                    <div className="image-customize" key={index}>
-                      <img src={coXuongKhopImg} />
-                      <div className="position">
+                    <div
+                      className="image-customize"
+                      key={index}
+                      onClick={() => this.handleViewDetailDoctor(value)}
+                    >
+                      <img
+                        style={{
+                          borderRadius: "50%",
+                          width: "200px",
+                          height: "200px",
+                        }}
+                        src={
+                          value.avatar !== null
+                            ? process.env.REACT_APP_BACKEND_URL + value.avatar
+                            : coXuongKhopImg
+                        }
+                      />
+                      <div
+                        className="position"
+                        style={{ marginLeft: "15%", paddingTop: "10px" }}
+                      >
                         <div>{lang === "vi" ? nameVi : nameEn}</div>
                         <div>Khoa Tiêu hóa</div>
                       </div>
@@ -79,4 +102,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor)
+);

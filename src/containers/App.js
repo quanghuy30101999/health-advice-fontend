@@ -11,13 +11,14 @@ import {
 import { path } from "../utils";
 import Login from "../containers/Auth/Login";
 import Home from "../routes/Home";
-import Header from "./Header/Header";
 import Register from "../containers/Register/Register";
 import System from "../routes/System";
 import HomePage from "../containers/HomePage/HomePage";
-import { CustomToastCloseButton } from "../components/CustomToast";
 import CustomScrollbars from "../components/CustomScrollbars";
 import Setup from "../containers/Register/Setup";
+import DetailDoctor from "./HomePage/Section/DetailDoctor";
+import Doctor from "../routes/Doctor";
+
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -55,23 +56,26 @@ class App extends Component {
                     path={path.SYSTEM}
                     component={userIsAuthenticated(System)}
                   />
+                  <Route
+                    path={path.DOCTOR}
+                    component={userIsAuthenticated(Doctor)}
+                  />
                   <Route path={path.SET_UP} component={Setup} />
                   <Route path={path.HOMEPAGE} component={HomePage} />
+                  <Route path="/user/:id" component={DetailDoctor} />
                 </Switch>
               </CustomScrollbars>
             </div>
-
             <ToastContainer
-              className="toast-container"
-              toastClassName="toast-item"
-              bodyClassName="toast-item-body"
-              autoClose={false}
-              hideProgressBar={true}
-              pauseOnHover={false}
-              pauseOnFocusLoss={true}
-              closeOnClick={false}
-              draggable={false}
-              closeButton={<CustomToastCloseButton />}
+              position="bottom-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
             />
           </div>
         </Router>
