@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import HomeHeader from "../HomeHeader";
 import "./DetailDoctor.scss";
 import { getDetailUser } from "../../../services/userService";
+import DoctorSchedule from "../../System/Doctor/DoctorSchedule";
 
 class DetailDoctor extends Component {
   constructor(props) {
@@ -30,7 +31,6 @@ class DetailDoctor extends Component {
 
   render() {
     let { doctor } = this.state;
-    console.log(doctor);
     return (
       <>
         <HomeHeader isShowBanner={false} />
@@ -56,7 +56,12 @@ class DetailDoctor extends Component {
               </div>
             </div>
           </div>
-          <div className="schedule-doctor"></div>
+          <div className="schedule-doctor">
+            <div className="content-left">
+              <DoctorSchedule doctorId={this.props.match.params.id} />
+            </div>
+            <div className="content-right"></div>
+          </div>
           <div className="detail-infor-doctor">
             {doctor && doctor.markdown && doctor.markdown.contentHTML && (
               <div

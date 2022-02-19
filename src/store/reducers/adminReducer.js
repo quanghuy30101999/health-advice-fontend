@@ -62,7 +62,6 @@ const appReducer = (state = initialState, action) => {
     case actionTypes.UPDATE_USER_SUCCESS:
       let users = state.users;
       let index = users.findIndex((value) => value.id === action.data.id);
-      console.log(action.data);
       if (index > 0) {
         users[index] = action.data;
       }

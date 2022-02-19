@@ -8,6 +8,13 @@ export const getDetailUser = (id) => {
   return axios.get(process.env.REACT_APP_BACKEND_URL + `/user/${id}`);
 };
 
+export const getScheduleDoctorByDate = (doctorId, date) => {
+  return axios.get(
+    process.env.REACT_APP_BACKEND_URL +
+      `/schedules?date=${date}&doctor_id=${doctorId}`
+  );
+};
+
 export const createMarkdown = (
   id,
   contentMarkdown,
@@ -56,6 +63,12 @@ export const updateDoctor = (id, contentMarkdown, contentHTML, description) => {
     contentMarkdown,
     contentHTML,
     description,
+  });
+};
+
+export const createSchedule = (result) => {
+  return axios.post(process.env.REACT_APP_BACKEND_URL + `/schedules`, {
+    result,
   });
 };
 

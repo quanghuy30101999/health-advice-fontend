@@ -58,7 +58,6 @@ class AddDoctorInformation extends Component {
   handleSaveContentMarkdown = async () => {
     const { selectedOption, contentMarkdown, contentHTML, description, data } =
       this.state;
-    console.log(data);
     data
       ? this.props.updateMarkdown(
           selectedOption.value,

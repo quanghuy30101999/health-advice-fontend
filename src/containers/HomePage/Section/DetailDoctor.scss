@@ -29,6 +29,16 @@
       }
     }
   }
+  .schedule-doctor {
+    display: flex;
+    height: 200px;
+    .content-left {
+      width: 50%;
+    }
+    .content-right {
+      width: 50%;
+    }
+  }
   .detail-infor-doctor {
     h3 {
       font-size: 17px;
