@@ -3,8 +3,16 @@ export const adminMenu = [
     name: "menu.admin.user",
     menus: [
       {
+        name: "menu.admin.manage-user",
+        link: "system/user-manage",
+      },
+      {
         name: "menu.admin.manage-doctor",
         link: "/system/doctor-manage",
+      },
+      {
+        name: "Manage specialty",
+        link: "/system/manage-specialties",
       },
       {
         name: "menu.admin.additional-doctor-information",
@@ -12,7 +20,15 @@ export const adminMenu = [
       },
       {
         name: "menu.doctor.schedule",
-        link: "/doctor/manage-schedule",
+        link: "/system/manage-schedule",
+      },
+      {
+        name: "menu.doctor.manage-patient",
+        link: "/system/manage-patient",
+      },
+      {
+        name: "Medical history",
+        link: "/system/manage-medical-history",
       },
     ],
   },
@@ -24,7 +40,27 @@ export const doctorMenu = [
     menus: [
       {
         name: "menu.doctor.schedule",
-        link: "/doctor/manage-schedule",
+        link: "/system/manage-schedule",
+      },
+      {
+        name: "menu.doctor.manage-patient",
+        link: "/system/manage-patient",
+      },
+      {
+        name: "Medical history",
+        link: "/system/manage-medical-history",
+      },
+    ],
+  },
+];
+
+export const partentMenu = [
+  {
+    name: "Histories medical",
+    menus: [
+      {
+        name: "Medical history",
+        link: "/system/manage-medical-history",
       },
     ],
   },

@@ -27,7 +27,7 @@ export const fetchTopDoctor = () => {
   return async (dispatch, getState) => {
     try {
       let res = await getTopDoctor();
-      if (res && res.status == 200) {
+      if (res && res.status === 200) {
         dispatch({
           type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
           data: res.data,

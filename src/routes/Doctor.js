@@ -6,15 +6,12 @@ import Schedule from "../containers/System/Doctor/Schedule";
 
 class System extends Component {
   render() {
-    const { systemMenuPath } = this.props;
     return (
       <>
         {this.props.isLoggedIn && <Header />}
         <div className="system-container">
           <div className="system-list">
-            <Switch>
-              <Route path="/doctor/manage-schedule" component={Schedule} />
-            </Switch>
+            <Switch></Switch>
           </div>
         </div>
       </>

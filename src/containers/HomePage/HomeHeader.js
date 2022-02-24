@@ -3,10 +3,14 @@ import { connect } from "react-redux";
 import "./HomeHeader.scss";
 import { FormattedMessage } from "react-intl";
 import * as actions from "../../store/actions";
+import { withRouter } from "react-router-dom";
 
 class HomeHeader extends Component {
   selectLanguage = (language) => {
     this.props.setLanguage(language);
+  };
+  redirectLogin = () => {
+    this.props.history.push("/login");
   };
   render() {
     let { lang, isShowBanner } = this.props;
@@ -76,6 +80,12 @@ class HomeHeader extends Component {
                 onClick={() => this.selectLanguage("en")}
               >
                 EN
+              </div>
+              <div
+                className={`language-en ${lang === "en" ? "active" : ""}`}
+                onClick={this.redirectLogin}
+              >
+                Login
               </div>
             </div>
           </div>
@@ -186,4 +196,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(HomeHeader)
+);

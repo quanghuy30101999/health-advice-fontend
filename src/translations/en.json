@@ -81,7 +81,8 @@
         },
         "doctor": {
             "manage-schedule": "Manage schedule",
-            "schedule": "Schedule"
+            "schedule": "Schedule",
+            "manage-patient": "Patient management"
         }
     },
     "system": {

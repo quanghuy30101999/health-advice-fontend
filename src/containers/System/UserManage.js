@@ -99,26 +99,28 @@ class UserManage extends Component {
                   </th>
                 </tr>
               </thead>
-              {users.map((value, index) => {
-                return (
-                  <tbody key={index}>
-                    <tr>
-                      <td>{value.email}</td>
-                      <td>{value.firstName}</td>
-                      <td>{value.lastName}</td>
-                      <td>{value.address}</td>
-                      <td>
-                        <button className=" btn-edit">
-                          <i className="fas fa-pencil-alt"></i>
-                        </button>
-                        <button className="btn-delete">
-                          <i className="fas fa-trash-alt"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                );
-              })}
+              {users
+                .filter((item) => item.role.key === "R3")
+                .map((value, index) => {
+                  return (
+                    <tbody key={index}>
+                      <tr>
+                        <td>{value.email}</td>
+                        <td>{value.firstName}</td>
+                        <td>{value.lastName}</td>
+                        <td>{value.address}</td>
+                        <td>
+                          <button className=" btn-edit">
+                            <i className="fas fa-pencil-alt"></i>
+                          </button>
+                          <button className="btn-delete">
+                            <i className="fas fa-trash-alt"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  );
+                })}
             </table>
           </div>
           <ToastContainer />

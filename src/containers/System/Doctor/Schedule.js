@@ -8,6 +8,7 @@ import moment from "moment";
 import FormattedDate from "../../../components/Formating/FormattedDate";
 import { createSchedule, getAllcode } from "../../../services/userService";
 import { toast } from "react-toastify";
+import LoadingOverlay from "react-loading-overlay";
 
 class Schedule extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Schedule extends Component {
       selectedOption: null,
       currentDate: new Date(),
       rangeTime: [],
+      isLoading: false,
     };
   }
 
@@ -46,7 +48,7 @@ class Schedule extends Component {
   };
 
   hanleOnChangeDatePicker = (date) => {
-    this.setState({ currentDate: date });
+    this.setState({ currentDate: date[0] });
   };
 
   handleSelectTime = (time) => {
@@ -65,15 +67,42 @@ class Schedule extends Component {
     let rangeTimeSelected = rangeTime.filter(
       (item) => item.isSelected === true
     );
+    let array;
     if (!currentDate) {
       toast.error("Invalid date");
     } else if (!selectedOption) {
-      toast.error("Please choose a doctor");
+      if (this.props.user.role.key === "R2") {
+        let date = moment(currentDate).format("DD/MM/YYYY");
+        array = rangeTimeSelected.map((item) => ({
+          doctor_id: this.props.user.id,
+          time_type: item.key,
+          date: date,
+        }));
+        try {
+          let response = await createSchedule(array);
+          if (response && response.status === 200) {
+            toast.success("Create schedule success");
+            let data = rangeTime.map((item) => ({
+              ...item,
+              isSelected: false,
+            }));
+            this.setState({
+              selectedOption: null,
+              currentDate: new Date(),
+              rangeTime: data,
+            });
+          }
+        } catch (error) {
+          toast.error(error.response.data.message);
+        }
+      } else {
+        toast.error("Please choose a doctor");
+      }
     } else if (rangeTimeSelected.length === 0) {
       toast.error("Please choose time");
     } else {
       let date = moment(currentDate).format("DD/MM/YYYY");
-      let array = rangeTimeSelected.map((item) => ({
+      array = rangeTimeSelected.map((item) => ({
         doctor_id: selectedOption.value,
         time_type: item.key,
         date: date,
@@ -99,19 +128,24 @@ class Schedule extends Component {
     let { selectedOption, rangeTime } = this.state;
     const { topDoctors } = this.props;
     const options = this.buildOptions(topDoctors);
+    let { user } = this.props;
     return (
       <div className="manage-schedule-container">
         <div className="m-s-title">Manage doctoc's examination plan</div>
         <div className="container">
           <div className="row">
-            <div className="col-6 form-group">
-              <label>Select doctoc</label>
-              <Select
-                value={selectedOption}
-                onChange={this.handleChange}
-                options={options}
-              />
-            </div>
+            {user && user.role && user.role.key === "R1" ? (
+              <div className="col-6 form-group">
+                <label>Select doctoc</label>
+                <Select
+                  value={selectedOption}
+                  onChange={this.handleChange}
+                  options={options}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
             <div className="col-6 form-group">
               <label>Select date</label>
               <DatePicker
@@ -148,6 +182,11 @@ class Schedule extends Component {
                 className="btn btn-primary btn-save-schedule"
                 onClick={this.handleSaveSchedule}
               >
+                <LoadingOverlay
+                  active={this.state.isLoading}
+                  spinner
+                  text="Loading ..."
+                ></LoadingOverlay>
                 Save
               </button>
             </div>
@@ -161,6 +200,7 @@ class Schedule extends Component {
 const mapStateToProps = (state) => {
   return {
     topDoctors: state.user.topDoctors,
+    user: state.user.userInfo,
   };
 };
 

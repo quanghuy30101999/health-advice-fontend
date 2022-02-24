@@ -4,9 +4,25 @@ import "./Specialty.scss";
 import Slider from "react-slick";
 import coXuongKhopImg from "../../../assets/specialty/120331-co-xuong-khop.jpg";
 import { FormattedMessage } from "react-intl";
-
+import { getAllSpecialty } from "../../../services/userService";
 class Specialty extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      specialties: [],
+    };
+  }
+
+  async componentDidMount() {
+    try {
+      let response = await getAllSpecialty();
+      if (response && response.status === 200) {
+        this.setState({ specialties: response.data });
+      }
+    } catch (error) {}
+  }
   render() {
+    let { specialties } = this.state;
     return (
       <>
         <div className="section-share section-specialty gray">
@@ -21,30 +37,27 @@ class Specialty extends Component {
             </div>
             <div className="specialty-body"></div>
             <Slider {...this.props.settings}>
-              <div className="image-customize">
-                <img src={coXuongKhopImg} />
-                <div>Cơ xương khớp</div>
-              </div>
-              <div className="image-customize">
-                <img src={coXuongKhopImg} />
-                <div>Cơ xương khớp</div>
-              </div>
-              <div className="image-customize">
-                <img src={coXuongKhopImg} />
-                <div>Cơ xương khớp</div>
-              </div>
-              <div className="image-customize">
-                <img src={coXuongKhopImg} />
-                <div>Cơ xương khớp</div>
-              </div>
-              <div className="image-customize">
-                <img src={coXuongKhopImg} />
-                <div>Cơ xương khớp</div>
-              </div>
-              <div className="image-customize">
-                <img src={coXuongKhopImg} />
-                <div>Cơ xương khớp</div>
-              </div>
+              {specialties &&
+                specialties.length > 0 &&
+                specialties.map((item, index) => {
+                  console.log(item);
+                  return (
+                    <div className="image-customize" key={index}>
+                      <img
+                        style={{
+                          width: "300px",
+                          height: "200px",
+                        }}
+                        src={
+                          !!item.image
+                            ? process.env.REACT_APP_BACKEND_URL + item.image
+                            : coXuongKhopImg
+                        }
+                      />
+                      <div>{item.name}</div>
+                    </div>
+                  );
+                })}
             </Slider>
           </div>
         </div>

@@ -7,6 +7,7 @@ import "react-image-lightbox/style.css"; // This only needs to be imported once 
 import "./UserManageRedux.scss";
 import TableManageUser from "./TableManageUser";
 import { toast } from "react-toastify";
+import { getAllSpecialty } from "../../../services/userService";
 
 class UserManageRedux extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class UserManageRedux extends Component {
       users: [],
       previewImgURL: "",
       isOpen: false,
+      specialties: [],
 
       id: "",
       email: "",
@@ -26,17 +28,25 @@ class UserManageRedux extends Component {
       gender: "",
       roleId: "R2",
       positionId: "",
+      specialty: "",
       avatar: "",
       errMessage: "",
       action: "create",
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.props.getGenderStart();
-    this.props.getRoleStart();
     this.props.getPositionStart();
     this.props.fetchAllUser();
+    try {
+      let response = await getAllSpecialty();
+      if (response && response.status === 200) {
+        this.setState({
+          specialties: response.data,
+        });
+      }
+    } catch (error) {}
   }
 
   componentDidUpdate(preProps, preState, snap) {
@@ -45,14 +55,6 @@ class UserManageRedux extends Component {
         gender:
           this.props.genders && this.props.genders.length > 0
             ? this.props.genders[0].key
-            : "",
-      });
-    }
-    if (preProps.roles !== this.props.roles) {
-      this.setState({
-        roleId:
-          this.props.roles && this.props.roles.length > 0
-            ? this.props.roles[0].key
             : "",
       });
     }
@@ -76,6 +78,7 @@ class UserManageRedux extends Component {
 
   saveUser = () => {
     if (this.state.action === "create") {
+      console.log(this.state);
       this.props.createNewUser(this.state);
     } else if (this.state.action === "edit") {
       this.props.updateUser(this.state);
@@ -88,10 +91,10 @@ class UserManageRedux extends Component {
       address: "",
       phoneNumber: "",
       gender: this.props.genders[0].key,
-      roleId: this.props.roles[0].key,
       positionId: this.props.positions[0].key,
       avatar: "",
       action: "create",
+      specialty: "",
       errMess: "",
       previewImgURL: "",
     });
@@ -127,6 +130,7 @@ class UserManageRedux extends Component {
   };
 
   handleUpdateUser = (value) => {
+    console.log(value);
     let {
       id,
       email,
@@ -138,6 +142,7 @@ class UserManageRedux extends Component {
       gender,
       role,
       position,
+      specialty,
       avatar,
     } = value;
     this.setState({
@@ -152,6 +157,7 @@ class UserManageRedux extends Component {
       roleId: role.key,
       positionId: position.key,
       avatar,
+      specialty: specialty.name,
       previewImgURL: process.env.REACT_APP_BACKEND_URL + avatar,
       action: "edit",
       errMess: "",
@@ -159,7 +165,7 @@ class UserManageRedux extends Component {
   };
 
   render() {
-    let { genders, roles, positions, errMess } = this.props;
+    let { genders, positions, errMess } = this.props;
     let {
       email,
       password,
@@ -171,7 +177,10 @@ class UserManageRedux extends Component {
       roleId,
       positionId,
       avatar,
+      specialties,
+      specialty,
     } = this.state;
+    console.log(specialty);
     return (
       <div className="user-redux-container">
         <div className="title">Manage doctors</div>
@@ -274,20 +283,20 @@ class UserManageRedux extends Component {
                 </select>
               </div>
               <div className="col-3">
-                <label>Role</label>
+                <label>Specialty</label>
                 <select
-                  value={roleId}
+                  value={specialty}
                   className="form-control"
                   onChange={(event) => {
-                    this.onChangeInput(event, "roleId");
+                    this.onChangeInput(event, "specialty");
                   }}
                 >
-                  {roles &&
-                    roles.length > 0 &&
-                    roles.map((value, index) => {
+                  {specialties &&
+                    specialties.length > 0 &&
+                    specialties.map((value, index) => {
                       return (
                         <option key={index} value={value.key}>
-                          {value.value_en}
+                          {value.name}
                         </option>
                       );
                     })}

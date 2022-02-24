@@ -74,7 +74,7 @@ class OutstandingDoctor extends Component {
                         style={{ marginLeft: "15%", paddingTop: "10px" }}
                       >
                         <div>{lang === "vi" ? nameVi : nameEn}</div>
-                        <div>Khoa Tiêu hóa</div>
+                        <div>{value.specialty && value.specialty.name}</div>
                       </div>
                     </div>
                   );

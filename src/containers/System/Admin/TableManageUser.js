@@ -54,36 +54,38 @@ class TableManageUser extends Component {
             </tr>
           </thead>
           {users &&
-            users.map((value, index) => {
-              return (
-                <tbody key={index}>
-                  <tr>
-                    <td>{value.email}</td>
-                    <td>{value.first_name}</td>
-                    <td>{value.last_name}</td>
-                    <td>{value.address}</td>
-                    <td>
-                      <button
-                        className=" btn-edit"
-                        onClick={() => {
-                          this.handleUpdateUser(value);
-                        }}
-                      >
-                        <i className="fas fa-pencil-alt"></i>
-                      </button>
-                      <button
-                        className="btn-delete"
-                        onClick={() => {
-                          this.handleDeleteUser(value.id);
-                        }}
-                      >
-                        <i className="fas fa-trash-alt"></i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              );
-            })}
+            users
+              .filter((item) => item.role.key === "R2")
+              .map((value, index) => {
+                return (
+                  <tbody key={index}>
+                    <tr>
+                      <td>{value.email}</td>
+                      <td>{value.first_name}</td>
+                      <td>{value.last_name}</td>
+                      <td>{value.address}</td>
+                      <td>
+                        <button
+                          className=" btn-edit"
+                          onClick={() => {
+                            this.handleUpdateUser(value);
+                          }}
+                        >
+                          <i className="fas fa-pencil-alt"></i>
+                        </button>
+                        <button
+                          className="btn-delete"
+                          onClick={() => {
+                            this.handleDeleteUser(value.id);
+                          }}
+                        >
+                          <i className="fas fa-trash-alt"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                );
+              })}
         </table>
       </>
     );

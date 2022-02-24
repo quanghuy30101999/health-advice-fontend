@@ -81,7 +81,8 @@
         },
         "doctor": {
             "manage-schedule": "Quản lí kế hoạch khám bệnh",
-            "schedule": "Lịch khám bệnh"
+            "schedule": "Lịch khám bệnh",
+            "manage-patient": "Quản lý bệnh nhân"
         }
     },
     "system": {

@@ -97,6 +97,7 @@ export const createNewUser = (state) => {
     roleId,
     positionId,
     avatar,
+    specialty,
   } = state;
   return async (dispatch, getState) => {
     try {
@@ -110,7 +111,8 @@ export const createNewUser = (state) => {
         gender,
         roleId,
         positionId,
-        avatar
+        avatar,
+        specialty
       );
       if (response && response.status === 200) {
         toast.success("Create user success");

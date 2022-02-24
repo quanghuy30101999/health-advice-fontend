@@ -6,6 +6,7 @@ import moment from "moment";
 import localization from "moment/locale/vi";
 import { getScheduleDoctorByDate } from "../../../services/userService";
 import "./DoctorSchedule.scss";
+import BookingModal from "./Modal/BookingModal";
 
 class DoctorSchedule extends Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class DoctorSchedule extends Component {
     this.state = {
       options: [],
       rangeTime: [],
+      isOpenModalBooking: false,
+      dataTimeModal: {},
     };
   }
 
@@ -66,6 +69,14 @@ class DoctorSchedule extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
+  handleClickSchedule = (time) => {
+    this.setState({ isOpenModalBooking: true, dataTimeModal: time });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ isOpenModalBooking: false });
+  };
+
   render() {
     let { options, rangeTime } = this.state;
     return (
@@ -95,7 +106,14 @@ class DoctorSchedule extends Component {
                 {rangeTime &&
                   rangeTime.length > 0 &&
                   rangeTime.map((value, index) => {
-                    return <button key={index}>{value.time.value_vi}</button>;
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => this.handleClickSchedule(value)}
+                      >
+                        {value.time.value_vi}
+                      </button>
+                    );
                   })}
               </div>
               <div className="book-free">
@@ -107,6 +125,11 @@ class DoctorSchedule extends Component {
             </div>
           </div>
         </div>
+        <BookingModal
+          isOpenModal={this.state.isOpenModalBooking}
+          handleCloseModal={this.handleCloseModal}
+          time={this.state.dataTimeModal}
+        />
       </>
     );
   }

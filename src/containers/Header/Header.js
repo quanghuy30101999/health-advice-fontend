@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import Navigator from "../../components/Navigator";
-import { adminMenu, doctorMenu } from "./menuApp";
+import { adminMenu, doctorMenu, partentMenu } from "./menuApp";
 import { FormattedMessage } from "react-intl";
 import "./Header.scss";
 import _ from "lodash";
@@ -29,6 +29,9 @@ class Header extends Component {
       if (userInfo.role && userInfo.role.key === "R2") {
         menu = doctorMenu;
       }
+      if (userInfo.role && userInfo.role.key === "R3") {
+        menu = partentMenu;
+      }
     }
     this.setState({
       menuApp: menu,
@@ -46,8 +49,8 @@ class Header extends Component {
         </div>
         <div className="languages">
           <div className="welcome">
-            <FormattedMessage id="homeHeader.welcome" />,{" "}
-            {userInfo && userInfo.lastName ? userInfo.lastName : ""}!
+            <FormattedMessage id="homeHeader.welcome" />,
+            {userInfo && userInfo.first_name ? userInfo.first_name : ""}!
           </div>
           <span
             className="language-vi"
