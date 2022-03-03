@@ -7,7 +7,10 @@ import "react-image-lightbox/style.css"; // This only needs to be imported once 
 import "./UserManageRedux.scss";
 import { toast } from "react-toastify";
 import Select from "react-select";
-import { createSpecialty } from "../../../services/userService";
+import {
+  createSpecialty,
+  getAllSpecialty,
+} from "../../../services/userService";
 
 class ManageSpecialty extends Component {
   constructor(props) {
@@ -21,11 +24,20 @@ class ManageSpecialty extends Component {
       selectedOption: null,
       description: "",
       doctors: [],
+      specialties: [],
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.props.loadTopDoctors();
+    try {
+      let response = await getAllSpecialty();
+      if (response && response.status === 200) {
+        this.setState({
+          specialties: response.data,
+        });
+      }
+    } catch (error) {}
   }
 
   componentDidUpdate(preProps, preState, snap) {}
@@ -93,7 +105,7 @@ class ManageSpecialty extends Component {
   };
 
   saveUser = async () => {
-    let { name, description, selectedOption, image } = this.state;
+    let { name, description, selectedOption, image, specialties } = this.state;
     try {
       let response;
       if (!!selectedOption) {
@@ -117,6 +129,7 @@ class ManageSpecialty extends Component {
           image: "",
           selectedOption: null,
           description: "",
+          specialties: [...this.state.specialties, response.data],
         });
       }
     } catch (error) {
@@ -125,7 +138,7 @@ class ManageSpecialty extends Component {
   };
 
   render() {
-    const { selectedOption, description } = this.state;
+    const { selectedOption, description, specialties } = this.state;
     let { topDoctors } = this.props;
     const options = this.buildOptions(topDoctors);
     return (
@@ -201,7 +214,40 @@ class ManageSpecialty extends Component {
                   Save
                 </button>
               </div>
-              <div className="col-12 mt-3"></div>
+              <>
+                <table id="customers" style={{ marginTop: "10px" }}>
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th className="col-3">Name</th>
+                      <th>Description</th>
+                      <th>
+                        <FormattedMessage id="common.action" />
+                      </th>
+                    </tr>
+                  </thead>
+                  {specialties &&
+                    specialties.map((value, index) => {
+                      return (
+                        <tbody key={index}>
+                          <tr>
+                            <td>{index}</td>
+                            <td>{value.name}</td>
+                            <td>{value.description}</td>
+                            <td>
+                              <button className=" btn-edit">
+                                <i className="fas fa-pencil-alt"></i>
+                              </button>
+                              <button className="btn-delete">
+                                <i className="fas fa-trash-alt"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      );
+                    })}
+                </table>
+              </>
             </div>
           </div>
         </div>

@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import coXuongKhopImg from "../../../assets/specialty/120331-co-xuong-khop.jpg";
 import { FormattedMessage } from "react-intl";
 import { getAllSpecialty } from "../../../services/userService";
+import { withRouter } from "react-router";
+
 class Specialty extends Component {
   constructor(props) {
     super(props);
@@ -40,9 +42,14 @@ class Specialty extends Component {
               {specialties &&
                 specialties.length > 0 &&
                 specialties.map((item, index) => {
-                  console.log(item);
                   return (
-                    <div className="image-customize" key={index}>
+                    <div
+                      className="image-customize"
+                      key={index}
+                      onClick={() => {
+                        this.props.history.push(`/specialty/${item.id}`);
+                      }}
+                    >
                       <img
                         style={{
                           width: "300px",
@@ -74,4 +81,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Specialty)
+);

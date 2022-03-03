@@ -18,6 +18,7 @@ import CustomScrollbars from "../components/CustomScrollbars";
 import Setup from "../containers/Register/Setup";
 import DetailDoctor from "./HomePage/Section/DetailDoctor";
 import Doctor from "../routes/Doctor";
+import DetailSpecialty from "./System/Specialty/DetailSpecialty";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -61,6 +62,7 @@ class App extends Component {
                   <Route path={path.SET_UP} component={Setup} />
                   <Route path={path.HOMEPAGE} component={HomePage} />
                   <Route path="/user/:id" component={DetailDoctor} />
+                  <Route path="/specialty/:id" component={DetailSpecialty} />
                 </Switch>
               </CustomScrollbars>
             </div>

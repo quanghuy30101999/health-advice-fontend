@@ -54,6 +54,10 @@ export const getDetailUser = (id) => {
   return axios.get(process.env.REACT_APP_BACKEND_URL + `/user/${id}`);
 };
 
+export const getDetailSpecialty = (id) => {
+  return axios.get(process.env.REACT_APP_BACKEND_URL + `/specialty/${id}`);
+};
+
 export const confirmBooking = (id, status_id) => {
   return axios.put(process.env.REACT_APP_BACKEND_URL + `/booking/${id}`, {
     status_id,

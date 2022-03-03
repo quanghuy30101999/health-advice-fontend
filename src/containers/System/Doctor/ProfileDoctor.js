@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./ProfileDoctor.scss";
-import { ToastContainer } from "react-toastify";
-import localization from "moment/locale/vi";
-import moment from "moment";
-
 class ProfileDoctor extends Component {
   constructor(props) {
     super(props);
@@ -18,8 +14,7 @@ class ProfileDoctor extends Component {
   };
 
   render() {
-    let { doctor, time } = this.props;
-    console.log(time);
+    let { doctor } = this.props;
     return (
       <>
         <div className="intro-doctor">
@@ -33,9 +28,9 @@ class ProfileDoctor extends Component {
               )}
             </div>
             <div className="down">
-              {`${time.time.value_vi} - ${this.capitalizeFirstLetter(
-                moment(time.date).format("dddd - DD/MM/YYYY")
-              )}`}
+              {doctor && doctor.markdown && doctor.markdown.description && (
+                <p>{doctor.markdown.description}</p>
+              )}
             </div>
           </div>
         </div>
